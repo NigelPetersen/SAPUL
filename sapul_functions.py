@@ -64,14 +64,16 @@ def vector_to_matrix(v,n):
     """
 
     if b0 == 0:
-        b0 = np.concatenate((np.array([-0.6, 0.6, 0.3, -0.3, 0.3]), np.zeros(p-5)), axis=0)
-        beta = np.concatenate((vector_to_matrix(np.ones(b0.shape[0]), 1) , vector_to_matrix(b0,1)), axis=0)
+        beta = np.concatenate((np.array([-0.6, 0.6, 0.3, -0.3, 0.3]), np.zeros(p-5)), axis=0)
     if g0 == 0:
-        g0 = np.array([1.5])
-        gamma = np.concatenate((vector_to_matrix(np.ones(g0.shape[0]), 1) , vector_to_matrix(g0,1)), axis=0)
-    # Generate unobserved labels
+        gamma = 1.5
     N_total = n + N
     y = np.random.binomial(1, prev, N_total)
+    x_mean = np.ones((p, N_total)) + (y*vector_to_matrix(beta, N_total)).transpose()
+    x = np.random.multivariate_normal(cov = autocorrelation_matrix(p, x_cov), size = N_total) + x_mean
+    
+    s_mean = np.ones((N_total,1)) + gamma*y
+    s = np.random.normal(loc=s_mean, size = N_total)
 
 
 
