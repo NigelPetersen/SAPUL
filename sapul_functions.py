@@ -51,16 +51,16 @@ def vector_to_matrix(v,n):
 # DATA GENERATION
 
  def generate_data(n=100, N=20000, p=50, prev=0.2, x_cov=0.4, b0=0, g0=0, corr=False, col=1):
-    # n = number of observed labels (positive)
-    # N = number of unobserved labels
-    # p = number of covariates
-    # prev = phenotype prevalence
-    # x_cov = autocorrelation param to generate covariance matrix
-    # b0 = initial value for beta
-    # g0 = initial value for gamma
-    # corr = indicator to violate independence assumption.
-    # col = column of design matrix to add to surrogate when corr==True
     """
+    n = number of observed labels (positive)
+    N = number of unobserved labels
+    p = number of covariates
+    prev = phenotype prevalence
+    x_cov = autocorrelation param to generate covariance matrix
+    b0 = initial value for beta
+    g0 = initial value for gamma
+    corr = indicator to violate independence assumption.
+    col = column of design matrix to add to surrogate when corr==True
     Given the above parameters, return a matrix of data consisting of true (unobserved) labels, observed (positive-only) labels,
     observed features and observed surrogate features.
     """
