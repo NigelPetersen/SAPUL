@@ -2,6 +2,8 @@
 import numpy as np
 import pandas as pd
 import scipy as sp
+import random
+from random import sample
 from sklearn import metrics
 
 # MISCELLANEOUS FUNCTIONS
@@ -74,6 +76,14 @@ def vector_to_matrix(v,n):
     
     s_mean = np.ones((N_total,1)) + gamma*y
     s = np.random.normal(loc=s_mean, size = N_total)
+
+    if corr:
+        s += x[:,col-1]
+
+    obs_ind = sample(np.where(y==1)[0],n)
+    a = np.zeros(len(y))
+    a[obs_ind] = 1
+    return np.concatenate((y,a,x,s),axis=1)
 
 
 
