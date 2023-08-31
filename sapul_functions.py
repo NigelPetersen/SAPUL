@@ -85,6 +85,9 @@ def vector_to_matrix(v,n):
     a[obs_ind] = 1
     return np.concatenate((y,a,x,s),axis=1)
 
+def adaptive_LASSO():
+    pass
+
 
 
 
